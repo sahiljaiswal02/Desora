@@ -12,6 +12,7 @@ import { Footer } from "./components/Footer";
 import { ServicesGrid } from "./components/ServicesGrid";
 import { ContactSection } from "./components/ContactSection";
 import { BlogPost } from "./components/BlogPost";
+import { ProjectPage } from "./components/ProjectPage";
 
 import blogsData from "./data/blogs.json";
 
@@ -66,6 +67,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/blog/:slug" element={<BlogPost blogs={blogs} />} />
+      <Route path="/project/:slug" element={<ProjectPage />} />
     </Routes>
   );
 }

@@ -51,7 +51,7 @@ export function Hero({ scrollYProgress }: HeroProps) {
               initial={{ x: -50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-green-400"
+              className="text-orange-500"
             >
               <ArrowRight className="w-[1em] h-[1em] stroke-[5]" />
             </motion.div>

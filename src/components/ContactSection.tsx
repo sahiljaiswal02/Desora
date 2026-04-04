@@ -43,7 +43,7 @@ export function ContactSection() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-[40px] md:text-[52px] font-black uppercase text-[#1B1F2D] leading-tight tracking-tight mb-4 font-display"
+            className="text-[40px] md:text-[52px] font-black uppercase text-[#1B1F2D] leading-normal tracking-normal mb-4 font-display"
           >
             CONTACT US
           </motion.h2>
@@ -116,7 +116,7 @@ export function ContactSection() {
             transition={{ duration: 0.6 }}
             className="w-full bg-white rounded-[2.5rem] p-10 md:p-14 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
           >
-            <h3 className="text-3xl md:text-[34px] font-black uppercase text-[#1B1F2D] tracking-tight font-display mb-5">
+            <h3 className="text-3xl md:text-[34px] font-black uppercase text-[#1B1F2D] tracking-normal font-display mb-5">
               GET IN TOUCH
             </h3>
 

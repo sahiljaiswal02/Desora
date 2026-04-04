@@ -1,11 +1,14 @@
 import { motion } from "motion/react";
 import { Star } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export function Navigation() {
   const [time, setTime] = useState(new Date());
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  const [location, setLocation] = useState("Local");
+  const [locationName, setLocationName] = useState("Local");
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
@@ -16,7 +19,7 @@ export function Navigation() {
       if (tz) {
         const parts = tz.split("/");
         // Make e.g. "Asia/Kolkata" into "Kolkata", "America/New_York" into "New York"
-        setLocation(parts[parts.length - 1].replace(/_/g, " "));
+        setLocationName(parts[parts.length - 1].replace(/_/g, " "));
       }
     } catch (e) {
       console.error(e);
@@ -33,6 +36,13 @@ export function Navigation() {
     })
     .toLowerCase();
 
+  const handleHomeClick = (e: React.MouseEvent) => {
+    if (location.pathname === "/") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-7xl z-50">
       <motion.div
@@ -42,27 +52,28 @@ export function Navigation() {
         className="bg-white/80 backdrop-blur-xl border border-white/20 rounded-full px-8 py-3 flex items-center justify-between shadow-[0_8px_32px_rgba(0,0,0,0.12)]"
       >
         <div className="flex items-center gap-8">
-          <a
-            href="#"
+          <Link
+            to="/"
+            onClick={handleHomeClick}
             className="text-black font-semibold text-xs uppercase tracking-widest hover:text-orange-500 transition-colors"
           >
             Home
-          </a>
+          </Link>
 
           <a
-            href="#services"
+            href="/#services"
             className="text-black font-semibold text-xs uppercase tracking-widest hover:text-orange-500 transition-colors"
           >
             Services
           </a>
           <a
-            href="#whyus"
+            href="/#whyus"
             className="text-black font-semibold text-xs uppercase tracking-widest hover:text-orange-500 transition-colors"
           >
             Why us
           </a>
           <a
-            href="#projects"
+            href="/#projects"
             className="text-black font-semibold text-xs uppercase tracking-widest hover:text-orange-500 transition-colors"
           >
             Projects
@@ -70,17 +81,17 @@ export function Navigation() {
         </div>
 
         <div className="flex items-center gap-1.5 group cursor-pointer">
-          <a href="#">
+          <Link to="/" onClick={handleHomeClick}>
             <span className="font-display text-2xl tracking-tighter text-black uppercase group-hover:text-orange-500 transition-colors">
               DESORA
             </span>
-          </a>
+          </Link>
           <Star className="w-4 h-4 text-black fill-black group-hover:text-orange-500 group-hover:fill-orange-500 transition-all" />
         </div>
 
         <div className="flex items-center gap-8">
           <div className="hidden md:flex items-center gap-2 text-black text-sm font-medium tabular-nums">
-            {location}, {formattedTime}
+            {locationName}, {formattedTime}
           </div>
           <a
             href="https://cal.com/"

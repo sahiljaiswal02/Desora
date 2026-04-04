@@ -1,50 +1,11 @@
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { projects } from "../data/projects";
 
 export function Portfolio() {
-  const projects = [
-    {
-      id: "01",
-      title: "SquadHub",
-      year: "2024",
-      category: "SaaS Website",
-      tags: ["Web Design", "UI/UX"],
-      image: "https://picsum.photos/seed/squadhub/1200/1600",
-    },
-    {
-      id: "02",
-      title: "Synap",
-      year: "2024",
-      category: "AI Platform",
-      tags: ["Product Design", "Branding"],
-      image: "https://picsum.photos/seed/synap/1200/1600",
-    },
-    {
-      id: "03",
-      title: "Leman",
-      year: "2023",
-      category: "E-Commerce",
-      tags: ["Mobile App", "Development"],
-      image: "https://picsum.photos/seed/leman/1200/1600",
-    },
-    {
-      id: "04",
-      title: "Vortex",
-      year: "2024",
-      category: "Fintech App",
-      tags: ["UI Design", "Motion"],
-      image: "https://picsum.photos/seed/vortex/1200/1600",
-    },
-    {
-      id: "05",
-      title: "Aura",
-      year: "2023",
-      category: "Lifestyle",
-      tags: ["Branding", "Web"],
-      image: "https://picsum.photos/seed/aura/1200/1600",
-    },
-  ];
+  const navigate = useNavigate();
 
   // Triple the projects for infinite loop effect
   const extendedProjects = [...projects, ...projects, ...projects];
@@ -137,8 +98,12 @@ export function Portfolio() {
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 className="relative w-[400px] flex-shrink-0 group cursor-pointer"
                 onClick={() => {
-                  setIsTransitioning(true);
-                  setActiveProjectIndex(i);
+                  if (isActive) {
+                    navigate(`/project/${project.slug}`);
+                  } else {
+                    setIsTransitioning(true);
+                    setActiveProjectIndex(i);
+                  }
                 }}
               >
                 <div className="relative aspect-3/4 rounded-[3rem] overflow-hidden bg-gray-100 mb-8 shadow-2xl">

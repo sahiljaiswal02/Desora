@@ -1,8 +1,9 @@
 import { ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export function Footer() {
   return (
-    <footer className="bg-[#22c55e] pt-32 pb-12 px-6 overflow-hidden">
+    <footer className="bg-gray-300 pt-32 pb-12 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-32">
           <div className="col-span-1">
@@ -10,14 +11,28 @@ export function Footer() {
               Sitemap
             </h4>
             <ul className="flex flex-col gap-4">
-              {["Home", "Services", "Why Us", "Projects"].map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
-                    className="text-black/70 hover:text-black transition-colors font-bold text-sm"
-                  >
-                    {item}
-                  </a>
+              {[
+                { name: "Home", href: "/" },
+                { name: "Services", href: "/#services" },
+                { name: "Why Us", href: "/#whyus" },
+                { name: "Projects", href: "/#projects" },
+              ].map((item) => (
+                <li key={item.name}>
+                  {item.href.startsWith("/") && !item.href.includes("#") ? (
+                    <Link
+                      to={item.href}
+                      className="text-black/70 hover:text-black transition-colors font-bold text-sm"
+                    >
+                      {item.name}
+                    </Link>
+                  ) : (
+                    <a
+                      href={item.href}
+                      className="text-black/70 hover:text-black transition-colors font-bold text-sm"
+                    >
+                      {item.name}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
@@ -37,7 +52,7 @@ export function Footer() {
               ].map((item) => (
                 <li key={item}>
                   <a
-                    href="#"
+                    href="/#services"
                     className="text-black/70 hover:text-black transition-colors font-bold text-sm whitespace-nowrap"
                   >
                     {item}
