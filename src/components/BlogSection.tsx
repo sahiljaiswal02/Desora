@@ -48,6 +48,9 @@ export function BlogSection({ blogs }: BlogSectionProps) {
                   <img
                     src={blog.image}
                     alt={blog.title}
+                    onError={(e) => {
+                      e.currentTarget.src = `https://picsum.photos/seed/${blog.slug}/800/400`;
+                    }}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                   />
                   <div className="absolute top-4 left-4 bg-white/95 backdrop-blur text-black text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm">

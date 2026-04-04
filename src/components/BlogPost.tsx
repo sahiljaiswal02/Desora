@@ -28,7 +28,7 @@ export function BlogPost({ blogs }: BlogPostProps) {
       <div className="min-h-screen bg-white flex flex-col items-center justify-center gap-4">
         <p className="text-gray-500 text-lg">Blog post not found.</p>
         <button
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/blogs")}
           className="text-orange-500 font-semibold underline"
         >
           Go back home
@@ -44,6 +44,9 @@ export function BlogPost({ blogs }: BlogPostProps) {
         <img
           src={blog.image}
           alt={blog.title}
+          onError={(e) => {
+            e.currentTarget.src = `https://picsum.photos/seed/${blog.slug}/800/400`;
+          }}
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/30" />
