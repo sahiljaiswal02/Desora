@@ -44,33 +44,24 @@ const rawText = geminiData.candidates[0].content.parts[0].text;
 const cleaned = rawText.replace(/```json|```/g, "").trim();
 const post = JSON.parse(cleaned);
 
-// 2. Fetch relatable image from Unsplash
-fs.mkdirSync("public/blog-images", { recursive: true });
-
-const imagePath = path.join("public/blog-images", `${post.slug}.png`);
-
+// 2. Get Unsplash image URL (no download, just resolve the redirect URL)
 const unsplashUrl = `https://source.unsplash.com/800x400/?${encodeURIComponent(topic)}`;
 
-await new Promise((resolve, reject) => {
+const resolvedImageUrl = await new Promise((resolve, reject) => {
   https
     .get(unsplashUrl, (res) => {
-      // Unsplash redirects to actual image, follow the redirect
-      if (res.statusCode === 302 || res.statusCode === 301) {
-        https
-          .get(res.headers.location, (redirected) => {
-            const file = fs.createWriteStream(imagePath);
-            redirected.pipe(file);
-            file.on("finish", resolve);
-          })
-          .on("error", reject);
+      if (res.statusCode === 301 || res.statusCode === 302) {
+        // Strip query params to get a clean stable URL
+        const clean = res.headers.location.split("?")[0];
+        resolve(clean);
       } else {
-        const file = fs.createWriteStream(imagePath);
-        res.pipe(file);
-        file.on("finish", resolve);
+        // Already at final URL
+        resolve(unsplashUrl);
       }
     })
     .on("error", reject);
 });
+
 // 3. Update blogs.json
 const jsonPath = "src/data/blogs.json";
 fs.mkdirSync("src/data", { recursive: true });
@@ -85,7 +76,7 @@ const newEntry = {
   excerpt: post.excerpt,
   category: post.category,
   date: new Date().toISOString().split("T")[0],
-  image: `/blog-images/${post.slug}.png`,
+  image: resolvedImageUrl, // 👈 direct Unsplash URL, no local file
   content: post.content,
 };
 
@@ -94,3 +85,4 @@ const updated = [newEntry, ...existing].slice(0, 10);
 fs.writeFileSync(jsonPath, JSON.stringify(updated, null, 2));
 
 console.log(`✅ Generated: ${post.title}`);
+console.log(`🖼  Image: ${resolvedImageUrl}`);
