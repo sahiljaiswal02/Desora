@@ -44,23 +44,33 @@ const rawText = geminiData.candidates[0].content.parts[0].text;
 const cleaned = rawText.replace(/```json|```/g, "").trim();
 const post = JSON.parse(cleaned);
 
-// 2. Generate doodle image
-const imagePrompt = `simple cute doodle illustration about ${topic}, minimal line art, white background`;
-const imageUrl = `https://image.pollinations.ai/prompt/${encodeURIComponent(imagePrompt)}?width=800&height=400&nologo=true`;
-const imagePath = path.join("public/blog-images", `${post.slug}.png`);
-
+// 2. Fetch relatable image from Unsplash
 fs.mkdirSync("public/blog-images", { recursive: true });
 
+const imagePath = path.join("public/blog-images", `${post.slug}.png`);
+
+const unsplashUrl = `https://source.unsplash.com/800x400/?${encodeURIComponent(topic)}`;
+
 await new Promise((resolve, reject) => {
-  const file = fs.createWriteStream(imagePath);
   https
-    .get(imageUrl, (res) => {
-      res.pipe(file);
-      file.on("finish", resolve);
+    .get(unsplashUrl, (res) => {
+      // Unsplash redirects to actual image, follow the redirect
+      if (res.statusCode === 302 || res.statusCode === 301) {
+        https
+          .get(res.headers.location, (redirected) => {
+            const file = fs.createWriteStream(imagePath);
+            redirected.pipe(file);
+            file.on("finish", resolve);
+          })
+          .on("error", reject);
+      } else {
+        const file = fs.createWriteStream(imagePath);
+        res.pipe(file);
+        file.on("finish", resolve);
+      }
     })
     .on("error", reject);
 });
-
 // 3. Update blogs.json
 const jsonPath = "src/data/blogs.json";
 fs.mkdirSync("src/data", { recursive: true });
