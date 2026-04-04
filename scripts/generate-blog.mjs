@@ -45,22 +45,60 @@ const cleaned = rawText.replace(/```json|```/g, "").trim();
 const post = JSON.parse(cleaned);
 
 // 2. Get Unsplash image URL (no download, just resolve the redirect URL)
-const unsplashUrl = `https://source.unsplash.com/800x400/?${encodeURIComponent(topic)}`;
+// 2. Get Unsplash image URL with fallbacks
+const keywords = encodeURIComponent(topic);
 
-const resolvedImageUrl = await new Promise((resolve, reject) => {
-  https
-    .get(unsplashUrl, (res) => {
-      if (res.statusCode === 301 || res.statusCode === 302) {
-        // Strip query params to get a clean stable URL
-        const clean = res.headers.location.split("?")[0];
-        resolve(clean);
-      } else {
-        // Already at final URL
-        resolve(unsplashUrl);
-      }
-    })
-    .on("error", reject);
-});
+const unsplashAttempts = [
+  `https://source.unsplash.com/800x400/?${keywords}`,
+  `https://source.unsplash.com/800x400/?technology,computer`,
+  `https://source.unsplash.com/800x400/?business,work`,
+];
+
+const FINAL_FALLBACK =
+  "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=400&fit=crop";
+
+async function resolveUnsplashUrl(url) {
+  return new Promise((resolve) => {
+    https
+      .get(url, (res) => {
+        if (
+          (res.statusCode === 301 || res.statusCode === 302) &&
+          res.headers.location
+        ) {
+          const clean = res.headers.location.split("?")[0];
+          // Make sure it's a real image URL not empty
+          if (clean && clean.startsWith("https://images.unsplash.com")) {
+            resolve(clean);
+          } else {
+            resolve(null);
+          }
+        } else if (res.statusCode === 200) {
+          resolve(url);
+        } else {
+          resolve(null);
+        }
+      })
+      .on("error", () => resolve(null));
+  });
+}
+
+let resolvedImageUrl = null;
+
+// Try each Unsplash URL one by one
+for (const attempt of unsplashAttempts) {
+  resolvedImageUrl = await resolveUnsplashUrl(attempt);
+  if (resolvedImageUrl) {
+    console.log(`🖼  Image resolved: ${resolvedImageUrl}`);
+    break;
+  }
+  console.log(`⚠️  Failed: ${attempt}, trying next...`);
+}
+
+// If everything fails, use hardcoded fallback
+if (!resolvedImageUrl) {
+  resolvedImageUrl = FINAL_FALLBACK;
+  console.log(`⚠️  Using final fallback image`);
+}
 
 // 3. Update blogs.json
 const jsonPath = "src/data/blogs.json";
