@@ -27,6 +27,6 @@ jobs:
         run: |
           git config user.name "Blog Bot"
           git config user.email "bot@yourdomain.com"
-          git add public/blog-images/ src/data/blogs.json
+          git add src/data/blogs.json
           git commit -m "auto: new blog post $(date +'%Y-%m-%d')" || echo "Nothing to commit"
           git push
