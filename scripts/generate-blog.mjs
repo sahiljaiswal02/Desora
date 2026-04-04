@@ -13,7 +13,7 @@ const topic = topics[Math.floor(Math.random() * topics.length)];
 
 // 1. Generate blog content with Gemini (free tier)
 const geminiRes = await fetch(
-  `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+  `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${process.env.GEMINI_API_KEY}`,
   {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -35,6 +35,10 @@ Keep content around 500 words. Return ONLY the JSON, no extra text, no markdown 
 );
 
 const geminiData = await geminiRes.json();
+if (!geminiData.candidates) {
+  console.error("Gemini error response:", JSON.stringify(geminiData, null, 2));
+  process.exit(1);
+}
 const rawText = geminiData.candidates[0].content.parts[0].text;
 
 // Strip any accidental markdown fences Gemini sometimes adds
