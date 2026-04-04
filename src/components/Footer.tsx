@@ -10,7 +10,7 @@ export function Footer() {
               Sitemap
             </h4>
             <ul className="flex flex-col gap-4">
-              {["Overview", "Work", "Portfolio", "Pricing"].map((item) => (
+              {["Home", "Services", "Why Us", "Projects"].map((item) => (
                 <li key={item}>
                   <a
                     href="#"
@@ -25,14 +25,20 @@ export function Footer() {
 
           <div className="col-span-1">
             <h4 className="font-bold text-black mb-8 uppercase tracking-widest text-sm">
-              Legal
+              Services
             </h4>
             <ul className="flex flex-col gap-4">
-              {["Terms", "Privacy"].map((item) => (
+              {[
+                "Web App Development",
+                "UX/ UI Design",
+                "App Maintenance",
+                "Deployment",
+                "Scaling",
+              ].map((item) => (
                 <li key={item}>
                   <a
                     href="#"
-                    className="text-black/70 hover:text-black transition-colors font-bold text-sm"
+                    className="text-black/70 hover:text-black transition-colors font-bold text-sm whitespace-nowrap"
                   >
                     {item}
                   </a>
@@ -46,7 +52,7 @@ export function Footer() {
               Social
             </h4>
             <ul className="flex flex-col gap-4">
-              {["Instagram", "Linkedin", "Facebook"].map((item) => (
+              {["Instagram", "Linkedin"].map((item) => (
                 <li key={item}>
                   <a
                     href="#"

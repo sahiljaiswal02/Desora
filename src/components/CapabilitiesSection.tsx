@@ -7,7 +7,10 @@ export function CapabilitiesSection() {
   );
 
   return (
-    <div className="mt-64 grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+    <div
+      id="whyus"
+      className="mt-36 grid grid-cols-1 lg:grid-cols-2 gap-24 items-start"
+    >
       <div className="relative">
         <motion.div
           initial={{ opacity: 0, x: -60 }}
@@ -17,7 +20,7 @@ export function CapabilitiesSection() {
           className="sticky top-32"
         >
           <span className="inline-block bg-blue-500 text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-8 shadow-lg">
-            Capabilities
+            Why Us
           </span>
           <h2 className="font-display text-[8vw] lg:text-[6vw] leading-[0.9] tracking-tighter uppercase text-black mb-12">
             Good Reasons <br />
