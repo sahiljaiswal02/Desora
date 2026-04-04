@@ -12,7 +12,7 @@ const topic = topics[Math.floor(Math.random() * topics.length)];
 
 // 1. Generate with Gemini
 const geminiRes = await fetch(
-  `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+  `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${process.env.GEMINI_API_KEY}`,
   {
     method: "POST",
     headers: { "Content-Type": "application/json" },
