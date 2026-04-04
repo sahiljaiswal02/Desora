@@ -21,12 +21,12 @@ jobs:
       - name: Generate blog post
         run: node scripts/generate-blog.mjs
         env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }} # 👈 changed
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
       - name: Commit and push
         run: |
           git config user.name "Blog Bot"
           git config user.email "bot@yourdomain.com"
-          git add content/blog/ public/blog-images/
+          git add public/blog-images/ src/data/blogs.json
           git commit -m "auto: new blog post $(date +'%Y-%m-%d')" || echo "Nothing to commit"
           git push

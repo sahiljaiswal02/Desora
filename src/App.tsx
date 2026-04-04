@@ -1,10 +1,6 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import { useScroll } from "motion/react";
 import { useRef } from "react";
+import { Routes, Route } from "react-router-dom";
 
 import { Navigation } from "./components/Navigation";
 import { Hero } from "./components/Hero";
@@ -15,8 +11,23 @@ import { BlogSection } from "./components/BlogSection";
 import { Footer } from "./components/Footer";
 import { ServicesGrid } from "./components/ServicesGrid";
 import { ContactSection } from "./components/ContactSection";
+import { BlogPost } from "./components/BlogPost";
 
-export default function App() {
+import blogsData from "./data/blogs.json";
+
+interface Blog {
+  title: string;
+  category: string;
+  date: string;
+  image: string;
+  excerpt: string;
+  slug: string;
+  content: string;
+}
+
+const blogs = blogsData as Blog[];
+
+function HomePage() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -29,15 +40,10 @@ export default function App() {
       className="relative min-h-screen bg-black selection:bg-orange-500/30 font-sans"
     >
       <Navigation />
-
       <Hero scrollYProgress={scrollYProgress} />
 
-      {/* Creative Transition Section */}
       <section className="relative bg-white z-20">
-        {/* The "Wipe" Transition */}
         <div className="absolute top-0 left-0 w-full h-18 -translate-y-full bg-gradient-to-t from-white to-transparent pointer-events-none" />
-
-        {/* Process & Portfolio Section Wrapper */}
         <div className="pt-32 pb-48 px-6 relative overflow-hidden">
           <div className="max-w-7xl mx-auto">
             <ProcessSection />
@@ -48,9 +54,18 @@ export default function App() {
         </div>
       </section>
 
-      <BlogSection />
+      <BlogSection blogs={blogs.slice(0, 3)} />
       <ContactSection />
       <Footer />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/blog/:slug" element={<BlogPost blogs={blogs} />} />
+    </Routes>
   );
 }
