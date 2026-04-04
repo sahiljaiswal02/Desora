@@ -1,0 +1,93 @@
+import { ArrowRight } from "lucide-react";
+
+export function Footer() {
+  return (
+    <footer className="bg-[#22c55e] pt-32 pb-12 px-6 overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-32">
+          <div className="col-span-1">
+            <h4 className="font-bold text-black mb-8 uppercase tracking-widest text-sm">
+              Sitemap
+            </h4>
+            <ul className="flex flex-col gap-4">
+              {["Overview", "Work", "Portfolio", "Pricing"].map((item) => (
+                <li key={item}>
+                  <a
+                    href="#"
+                    className="text-black/70 hover:text-black transition-colors font-bold text-sm"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="col-span-1">
+            <h4 className="font-bold text-black mb-8 uppercase tracking-widest text-sm">
+              Legal
+            </h4>
+            <ul className="flex flex-col gap-4">
+              {["Terms", "Privacy"].map((item) => (
+                <li key={item}>
+                  <a
+                    href="#"
+                    className="text-black/70 hover:text-black transition-colors font-bold text-sm"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="col-span-1">
+            <h4 className="font-bold text-black mb-8 uppercase tracking-widest text-sm">
+              Social
+            </h4>
+            <ul className="flex flex-col gap-4">
+              {["Instagram", "Linkedin", "Facebook"].map((item) => (
+                <li key={item}>
+                  <a
+                    href="#"
+                    className="text-black/70 hover:text-black transition-colors font-bold text-sm"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="col-span-2 md:col-span-1 lg:col-span-2 flex flex-col items-start md:items-end">
+            <a
+              href="mailto:Contact@desora.com"
+              className="font-display text-3xl md:text-5xl lg:text-6xl tracking-tighter text-black hover:opacity-70 transition-opacity underline decoration-1 underline-offset-8"
+            >
+              desora@protonmail.com
+            </a>
+          </div>
+        </div>
+
+        <div className="relative mb-12">
+          <h1 className="font-display text-[22vw] leading-none tracking-tighter uppercase text-black font-black flex items-start">
+            DESORA<span className="text-black">*</span>
+          </h1>
+        </div>
+
+        <div className="flex flex-col md:flex-row items-center justify-between pt-12 border-t border-black/10">
+          <p className="text-black font-bold text-xs mb-4 md:mb-0">
+            © 2026 Desora. All Rights Reserved.
+          </p>
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="flex items-center gap-2 text-black font-bold text-xs group"
+          >
+            Back to top{" "}
+            <ArrowRight className="w-4 h-4 -rotate-90 group-hover:-translate-y-1 transition-transform" />
+          </button>
+        </div>
+      </div>
+    </footer>
+  );
+}
