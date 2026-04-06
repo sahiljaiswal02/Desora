@@ -10,7 +10,7 @@ export function ServicesGrid() {
       graphic: (
         <div className="relative w-full h-full flex items-center justify-center p-8">
           {/* Phone Wireframe */}
-          <div className="w-[180px] h-full max-h-[300px] bg-white rounded-[2.5rem] border-[6px] border-gray-100 shadow-xl overflow-hidden relative z-10 flex flex-col items-center pt-8 px-4">
+          <div className="w-full max-w-[180px] h-full max-h-[300px] bg-white rounded-[2.5rem] border-[6px] border-gray-100 shadow-xl overflow-hidden relative z-10 flex flex-col items-center pt-8 px-4">
             {/* Notch */}
             <div className="absolute top-2 left-1/2 -translate-x-1/2 w-16 h-5 bg-gray-100 rounded-full" />
 
@@ -163,7 +163,7 @@ export function ServicesGrid() {
   ];
 
   return (
-    <div id="services" className=" grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div id="services" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {capabilities.map((item, i) => (
         <motion.div
           key={i}

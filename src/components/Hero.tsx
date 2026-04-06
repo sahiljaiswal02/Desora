@@ -40,20 +40,20 @@ export function Hero({ scrollYProgress }: HeroProps) {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display text-[11vw] md:text-[9vw] leading-[1] tracking-tight uppercase flex flex-col items-center gap-y-1"
+          className="font-display text-5xl sm:text-7xl md:text-[9vw] 2xl:text-[10rem] leading-[1] tracking-tight uppercase flex flex-col items-center gap-y-1 md:gap-y-3 px-4"
         >
-          <div className="flex items-center justify-center text-white gap-x-4">
+          <div className="flex flex-wrap items-center justify-center text-white gap-2 md:gap-x-4 text-center">
             Building Bridges
           </div>
 
-          <div className="flex items-center justify-center gap-x-4 relative">
+          <div className="flex flex-wrap items-center justify-center gap-2 md:gap-x-4 relative text-center">
             <motion.div
               initial={{ x: -50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="text-orange-500"
+              className="text-orange-500 hidden sm:block"
             >
-              <ArrowRight className="w-[1em] h-[1em] stroke-[5]" />
+              <ArrowRight className="w-[0.8em] h-[0.8em] md:w-[1em] md:h-[1em] stroke-[5]" />
             </motion.div>
             <span className="text-white">Between You</span>
             <span className="text-orange-500 font-serif italic text-[1.2em]">
@@ -61,7 +61,7 @@ export function Hero({ scrollYProgress }: HeroProps) {
             </span>
           </div>
 
-          <div className="text-white gap-x-4 flex items-center justify-center">
+          <div className="text-white gap-x-4 flex flex-wrap items-center justify-center text-center">
             Your Customers
           </div>
         </motion.h1>
@@ -70,9 +70,9 @@ export function Hero({ scrollYProgress }: HeroProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
-          className="mt-8 flex flex-col items-center"
+          className="mt-6 md:mt-8 flex flex-col items-center px-4"
         >
-          <p className="text-white text-sm md:text-base max-w-lg mx-auto font-medium leading-relaxed tracking-wide">
+          <p className="text-white/90 text-sm md:text-base lg:text-lg max-w-lg 2xl:max-w-2xl mx-auto font-medium leading-relaxed tracking-wide text-center">
             We create seamless connections that turn users into loyal advocates
             through intentional design and strategic innovation.
           </p>

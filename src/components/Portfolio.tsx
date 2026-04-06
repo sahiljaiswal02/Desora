@@ -11,6 +11,21 @@ export function Portfolio() {
   const extendedProjects = [...projects, ...projects, ...projects];
   const [activeProjectIndex, setActiveProjectIndex] = useState(projects.length);
   const [isTransitioning, setIsTransitioning] = useState(true);
+  
+  const [layoutData, setLayoutData] = useState({ width: 400, gap: 32 });
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setLayoutData({ width: window.innerWidth * 0.85, gap: 24 });
+      } else {
+        setLayoutData({ width: 400, gap: 32 });
+      }
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -74,11 +89,12 @@ export function Portfolio() {
         </div>
       </div>
 
-      <div className="relative h-[750px] w-full overflow-hidden flex items-center">
+      <div className="relative h-[600px] md:h-[750px] w-full overflow-hidden flex items-center">
         <div
-          className="flex gap-8 absolute left-1/2"
+          className="flex absolute left-1/2"
           style={{
-            transform: `translateX(-${activeProjectIndex * 432 + 200}px)`,
+            gap: `${layoutData.gap}px`,
+            transform: `translateX(-${activeProjectIndex * (layoutData.width + layoutData.gap) + layoutData.width / 2}px)`,
             transition: isTransitioning
               ? "transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)"
               : "none",
@@ -96,7 +112,8 @@ export function Portfolio() {
                   filter: isActive ? "blur(0px)" : "blur(2px)",
                 }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="relative w-[400px] flex-shrink-0 group cursor-pointer"
+                className="relative shrink-0 group cursor-pointer"
+                style={{ width: `${layoutData.width}px` }}
                 onClick={() => {
                   if (isActive) {
                     navigate(`/project/${project.slug}`);
@@ -126,10 +143,10 @@ export function Portfolio() {
                   </div>
 
                   <div className="absolute bottom-8 left-8 right-8">
-                    <h3 className="text-white font-display text-6xl uppercase tracking-tighter leading-none mb-6">
+                    <h3 className="text-white font-display text-4xl md:text-6xl uppercase tracking-tighter leading-none mb-6">
                       {project.title}
                     </h3>
-                    <div className="flex gap-2">
+                    <div className="flex flex-wrap gap-2">
                       {project.tags.map((tag) => (
                         <span
                           key={tag}

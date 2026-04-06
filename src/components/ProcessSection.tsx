@@ -22,7 +22,7 @@ export function ProcessSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="font-display text-[10vw] md:text-[9vw] leading-[1] tracking-tighter uppercase text-black"
+          className="font-display text-4xl sm:text-6xl md:text-[8vw] lg:text-[7vw] 2xl:text-[9rem] leading-[1.1] md:leading-none tracking-tighter uppercase text-black"
         >
           <div className="block">Empowering Your</div>
           <div className="block text-gray-300">Business With</div>

@@ -22,7 +22,7 @@ export function CapabilitiesSection() {
           <span className="inline-block bg-blue-500 text-white px-6 py-2 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-8 shadow-lg">
             Why Us
           </span>
-          <h2 className="font-display text-[8vw] lg:text-[6vw] leading-[0.9] tracking-tighter uppercase text-black mb-12">
+          <h2 className="font-display text-[10vw] sm:text-6xl lg:text-[6vw] 2xl:text-[6rem] leading-[0.9] tracking-tighter uppercase text-black mb-12">
             Good Reasons <br />
             To Choose <br />
             <span className="text-green-500">Desora</span>
@@ -32,10 +32,10 @@ export function CapabilitiesSection() {
             <img
               src="https://picsum.photos/seed/tech-coding/1200/800"
               alt="Tech Innovation"
-              className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-1000"
+              className="w-full aspect-4/3 object-cover group-hover:scale-105 transition-transform duration-1000"
               referrerPolicy="no-referrer"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-linear-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </div>
         </motion.div>
       </div>

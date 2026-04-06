@@ -36,14 +36,14 @@ export function ContactSection() {
       className="bg-[#F8F9FA] py-24 px-6 relative z-10 w-full"
       id="contact"
     >
-      <div className="max-w-6xl mx-auto flex flex-col items-center">
+      <div className="max-w-6xl 2xl:max-w-[1600px] mx-auto flex flex-col items-center">
         {/* Header Area */}
         <div className="text-center mb-16">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-[40px] md:text-[52px] font-black uppercase text-[#1B1F2D] leading-normal tracking-normal mb-4 font-display"
+            className="text-4xl sm:text-5xl md:text-[52px] 2xl:text-7xl font-black uppercase text-[#1B1F2D] leading-normal tracking-normal mb-4 font-display text-center"
           >
             CONTACT US
           </motion.h2>

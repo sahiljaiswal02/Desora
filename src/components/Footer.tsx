@@ -90,8 +90,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="relative mb-12">
-          <h1 className="font-display text-[22vw] leading-none tracking-tighter uppercase text-black font-black flex items-start">
+        <div className="relative mb-12 flex justify-center lg:justify-start">
+          <h1 className="font-display text-[22vw] 2xl:text-[350px] leading-none tracking-tighter uppercase text-black font-black flex items-start">
             DESORA<span className="text-black">*</span>
           </h1>
         </div>
