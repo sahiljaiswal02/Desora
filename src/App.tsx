@@ -15,6 +15,7 @@ import { BlogPost } from "./components/BlogPost";
 import { ProjectPage } from "./components/ProjectPage";
 
 import blogsData from "./data/blogs.json";
+import { useScrollToSection } from "./hooks/useScrollToSection";
 
 interface Blog {
   title: string;
@@ -29,6 +30,7 @@ interface Blog {
 const blogs = blogsData as Blog[];
 
 function HomePage() {
+  useScrollToSection();
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -45,7 +47,7 @@ function HomePage() {
 
       <section className="relative bg-white z-20">
         <div className="absolute top-0 left-0 w-full h-18 -translate-y-full bg-gradient-to-t from-white to-transparent pointer-events-none" />
-        <div className="pt-32 pb-48 px-4 md:px-6 relative overflow-hidden">
+        <div className="pt-32 pb-48 px-4 md:px-6 relative overflow-visible">
           <div className="max-w-7xl 2xl:max-w-[1600px] mx-auto">
             <ProcessSection />
             <ServicesGrid />
