@@ -108,7 +108,7 @@ export function Navigation() {
             {locationName}, {formattedTime}
           </div>
           <a
-            href="https://cal.com/"
+            href="https://cal.com/desora/30min"
             target="_blank"
             rel="noopener noreferrer"
             className="hidden lg:inline-flex bg-black text-white px-8 py-2.5 rounded-full text-sm font-bold hover:bg-orange-500 transition-all duration-300 shadow-lg active:scale-95 items-center justify-center"

@@ -113,7 +113,7 @@ export const CardSticky = ({
         className,
       )}
     >
-      <div className="w-full h-full max-w-7xl">{children}</div>
+      <div className="w-full h-fit max-w-7xl">{children}</div>
     </motion.div>
   );
 };

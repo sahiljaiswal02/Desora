@@ -4,7 +4,7 @@ import { ProjectsStack } from "./ui/projects-stack";
 export function Portfolio() {
   return (
     <div id="projects" className="mt-32 md:mt-64 relative">
-      <div className="flex items-center justify-between mb-10 md:mb-20 px-4 max-w-7xl mx-auto">
+      <div className="flex items-center justify-betwee px-4 max-w-7xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}

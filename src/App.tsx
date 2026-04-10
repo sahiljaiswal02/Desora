@@ -46,19 +46,19 @@ function HomePage() {
       <Hero scrollYProgress={scrollYProgress} />
 
       <section className="relative bg-white z-20">
-        <div className="absolute top-0 left-0 w-full h-18 -translate-y-full bg-gradient-to-t from-white to-transparent pointer-events-none" />
-        <div className="pt-32 pb-48 px-4 md:px-6 relative overflow-visible">
+        <div className="absolute top-0 left-0 w-full h-18 -translate-y-full bg-linear-to-t from-white to-transparent pointer-events-none" />
+        <div className="pt-32 px-4 md:px-6 relative overflow-visible">
           <div className="max-w-7xl 2xl:max-w-[1600px] mx-auto">
             <ProcessSection />
             <ServicesGrid />
             <CapabilitiesSection />
             <Portfolio />
+            <BlogSection blogs={blogs.slice(0, 3)} />
+            <ContactSection />
           </div>
         </div>
       </section>
 
-      <BlogSection blogs={blogs.slice(0, 3)} />
-      <ContactSection />
       <Footer />
     </div>
   );

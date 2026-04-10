@@ -82,7 +82,7 @@ export function ContactSection() {
             </p>
 
             <a
-              href="https://cal.com/"
+              href="https://cal.com/desora/30min"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-black hover:bg-orange-500 transition-colors rounded-lg text-white font-bold text-[13px] md:text-[14px] uppercase tracking-wide py-4 px-8 mb-16 shadow-[0_4px_14px_rgba(86,125,244,0.39)] text-center cursor-pointer"
