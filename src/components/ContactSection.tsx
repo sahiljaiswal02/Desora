@@ -22,7 +22,7 @@ export function ContactSection() {
     {
       icon: <Mail className="w-5 h-5 text-gray-700" />,
       title: "Email",
-      details: "desora@protonmail.com",
+      details: "desoracreations@proton.me",
     },
     {
       icon: <MapPin className="w-5 h-5 text-gray-700" />,

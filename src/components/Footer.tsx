@@ -82,10 +82,10 @@ export function Footer() {
 
           <div className="col-span-2 md:col-span-1 lg:col-span-2 flex flex-col items-start md:items-end">
             <a
-              href="mailto:Contact@desora.com"
+              href="mailto:desoracreations@proton.me"
               className="font-display text-3xl md:text-5xl lg:text-6xl tracking-tighter text-black hover:opacity-70 transition-opacity underline decoration-1 underline-offset-8"
             >
-              desora@protonmail.com
+              desoracreations@proton.me
             </a>
           </div>
         </div>
